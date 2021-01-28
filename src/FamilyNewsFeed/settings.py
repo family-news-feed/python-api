@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'FamilyNewsFeed.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'URL': 'jdbc:postgresql://localhost:5432/fnf-localtest'
+        'URL': 'jdbc:postgresql://localhost:5432/fnf-localtest',
         'USER': 'fnfadmin',
         'PASSWORD': '', # replace with your password
     }

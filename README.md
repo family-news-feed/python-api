@@ -2,8 +2,8 @@
 
 -   Install Python 3
 -   Install Pip 20.0+
--   Install Django
-    -   `python -m pip install django --user`
+-   Install Python Modules
+    -   `python -m pip install django psycopg2 --user`
 -   Add to [System Hosts](file:///C:/Windows/System32/drivers/etc/hosts):
     -   `127.0.0.1           localhost`
 - Install [PostgreSQL 13](https://www.postgresqltutorial.com/install-postgresql/)
