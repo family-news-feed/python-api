@@ -16,6 +16,17 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+"""
+Import FamilyNewsFeed Views here with the syntax1.5
+from endpoints.<endpoint> import views as <endpoint>Views
+"""
+from endpoints.welcome import views as welcomeViews
+
 urlpatterns = [
+    # django paths
     path('admin/', admin.site.urls),
+
+    # FamilyNewsFeed Views
+    path('welcome/', welcomeViews.welcome),
+    path('teapot/', welcomeViews.teapot),
 ]
