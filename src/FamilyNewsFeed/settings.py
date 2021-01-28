@@ -78,6 +78,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'URL': 'jdbc:postgresql://localhost:5432/fnf-localtest',
+        'NAME': 'fnf-localtest',
         'USER': 'fnfadmin',
         'PASSWORD': '', # replace with your password
     }
