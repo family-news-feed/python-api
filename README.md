@@ -20,6 +20,7 @@
         -   set name = `fnf-localtest`
 -   Replace the DATABASE password with your own in [./src/FamilyNewsFeed/settings.py](./src/FamilyNewsFeed/settings.py)
 -   Perform database migrations
+    -   `python src/manage.py makemigrations`
     -   `python src/manage.py migrate`
 
 ## Running the API
