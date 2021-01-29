@@ -9,7 +9,6 @@
 - Install [PostgreSQL 13](https://www.postgresqltutorial.com/install-postgresql/)
     -   store password for `postgres` user in password manager
     -   don't bother with stack builder, we don't need any add-ins yet
-    -   [Create a new database server in pgAdmin 4](https://www.postgresqltutorial.com/connect-to-postgresql-database/)
     -   Create a new database user
         -   username: `fnfadmin`
         -   password: generate a strong one and store it in password manager
