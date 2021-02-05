@@ -23,7 +23,9 @@
     -   Create a new local testing database
         -   set owner = `fnfadmin`
         -   set name = `fnf-localtest`
--   Replace the DATABASE password with your own in [./src/configs/dev.py](./src/config/dev.py)
+-   Ignore changes to the dev config file
+    -   `git update-index --assume-unchanged src/configs/dev.py`
+-   Replace the DATABASE password with your own in [the dev config file](./src/config/dev.py)
 -   Perform database migrations
     -   `python .\src\manage.py makemigrations`
     -   `python .\src\manage.py migrate`
