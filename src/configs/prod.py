@@ -18,9 +18,9 @@ from .base import *
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['.localhost', '127.0.0.1', '[::1]']
+ALLOWED_HOSTS = []
 
 
 # Database
@@ -29,10 +29,29 @@ ALLOWED_HOSTS = ['.localhost', '127.0.0.1', '[::1]']
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'fnf-localtest',
-        'HOST': 'localhost',
-        'PORT': '5432',
-        'USER': 'fnfadmin',
+        'NAME': '',
+        'HOST': '',
+        'PORT': '',
+        'USER': '',
         'PASSWORD': '',
     }
 }
+
+
+# Password validation
+# https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
+
+AUTH_PASSWORD_VALIDATORS = [
+    {
+        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+    },
+]

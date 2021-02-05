@@ -23,9 +23,11 @@
     -   Create a new local testing database
         -   set owner = `fnfadmin`
         -   set name = `fnf-localtest`
--   Ignore changes to the dev config file
-    -   `git update-index --assume-unchanged src/configs/dev.py`
+-   Ignore changes to the env files
+    -   `git update-index --assume-unchanged src/configs/dev.py scripts/activate.ps1`
 -   Replace the DATABASE password with your own in [the dev config file](./src/config/dev.py)
+-   Set the DJANGO_SECRET_KEY in [the virtualenv activation script](./scripts/activate.ps1)
+    -   Ask Ben for new Secret Key
 -   Perform database migrations
     -   `python .\src\manage.py makemigrations`
     -   `python .\src\manage.py migrate`
