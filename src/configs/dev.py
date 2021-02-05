@@ -25,7 +25,7 @@ SECRET_KEY = 'da7gy2&_uv=-5o@*v#o7+pzp3shi$ytv^l)&n@ufxbi@@w(v%o'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['.localhost', '127.0.0.1', '[::1]']
 
 
 # Application definition
@@ -77,10 +77,11 @@ WSGI_APPLICATION = 'FamilyNewsFeed.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'URL': 'jdbc:postgresql://localhost:5432/fnf-localtest',
         'NAME': 'fnf-localtest',
+        'HOST': 'localhost',
+        'PORT': '5432',
         'USER': 'fnfadmin',
-        'PASSWORD': '', # replace with your password
+        'PASSWORD': '',
     }
 }
 

@@ -2,8 +2,13 @@
 
 -   Install Python 3
 -   Install Pip 20.0+
+-   Install VirtualEnv:
+    -   ```powershell
+        python -m pip install virtualenv --user
+        virtualenv --python $env:LocalAppData\Programs\Python\Python38\python.exe venv
+        ```
 -   Install Python Modules
-    -   `python -m pip install django psycopg2 --user`
+    -   `pip install django psycopg2 --user`
 -   Add to [System Hosts](file:///C:/Windows/System32/drivers/etc/hosts):
     -   `127.0.0.1           localhost`
 - Install [PostgreSQL 13](https://www.postgresqltutorial.com/install-postgresql/)
@@ -18,18 +23,18 @@
     -   Create a new local testing database
         -   set owner = `fnfadmin`
         -   set name = `fnf-localtest`
--   Replace the DATABASE password with your own in [./src/FamilyNewsFeed/settings.py](./src/FamilyNewsFeed/settings.py)
+-   Replace the DATABASE password with your own in [./src/configs/dev.py](./src/config/dev.py)
 -   Perform database migrations
-    -   `python src/manage.py makemigrations`
-    -   `python src/manage.py migrate`
+    -   `python .\src\manage.py makemigrations`
+    -   `python .\src\manage.py migrate`
 
 ## Running the API
 
--   If using Git Bash:
-    -   `chmod u+x scripts/run.sh` (first time only)
-    -   `scripts/run.sh`
--   `python src/manage.py runserver <port>`
-    -   Default port is 8000
+-   Using Powershell:
+    -   Activate dev environment
+        -   `.\scripts\activate.ps1 dev`
+    -   Start the server
+        -   `.\scripts\run.ps1`
 -   `open http://localhost:8000/`
 
 ## Creating a New API Endpoint
