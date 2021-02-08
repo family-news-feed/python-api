@@ -39,14 +39,12 @@
         -   `.\scripts\activate.ps1 dev`
     -   Start the server
         -   `.\scripts\run.ps1`
--   `open http://localhost:8000/`
+    -   Deactivate the dev environment
+        -   `.\scripts\deactivate.ps1`
 
 ## Creating a New API Endpoint
 
--   If using Git Bash:
-    -   `chmod u+x scripts/endpoint.sh` (first time only)
-    -   `scripts/endpoint.sh <endpointname>`
--   If not using Git Bash:
-    -   Copy the folder src/\_template\_ into src/endpoints
-    -   Rename the folder to a sensible name
+-   Using Powershell:
+    -   `.\scripts\endpoint.ps1 <endpoint_name>`
+        -   Script will prevent duplicates and empty names
 -   Create new URL mappings in [src/FamilyNewsFeed/urls.py](./src/FamilyNewsFeed/urls.py) for the views
