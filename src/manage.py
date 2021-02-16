@@ -2,7 +2,20 @@
 '''Django's command-line utility for administrative tasks.'''
 import os
 import sys
+from django.core.exceptions import ImproperlyConfigured
 
+def check_key(key):
+    if not os.environ.get(key):
+        raise ImproperlyConfigured(
+            'Configure the $env:%s in scripts/activate.ps1' % key
+        )
+
+def check_env():
+    check_key('DJANGO_SECRET_KEY')
+    check_key('DJANGO_FHIR_APP_ID')
+    check_key('DJANGO_FHIR_API_BASE')
+    check_key('DJANGO_FHIR_CLIENT_ID')
+    check_key('DJANGO_FHIR_REDIRECT_URI')
 
 def main():
     '''Run administrative tasks.'''
@@ -15,10 +28,7 @@ def main():
             available on your PYTHONPATH environment variable? Did you
             forget to activate a virtual environment?'''
         ) from exc
-    if not os.environ.get('DJANGO_SECRET_KEY'):
-        raise EnvironmentError(
-            'Configure the $env:DJANGO_SECRET_KEY in scripts/activate.ps1'
-        )
+    check_env()
     execute_from_command_line(sys.argv)
 
 

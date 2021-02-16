@@ -19,3 +19,7 @@ $env:DJANGO_SETTINGS_MODULE="configs.$djangoenv"
 
 # Set environment variables for use with os.environ.get()
 $env:DJANGO_SECRET_KEY=''
+$env:DJANGO_FHIR_APP_ID=''
+$env:DJANGO_FHIR_API_BASE=''
+$env:DJANGO_FHIR_CLIENT_ID=''
+$env:DJANGO_FHIR_REDIRECT_URI=''
