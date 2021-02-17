@@ -2,6 +2,7 @@ from django.db import models
 from django.core.validators import RegexValidator
 from .. import languages_and_countries as lang
 import uuid
+from ..managers import guardian_manager
 
 
 class Guardian(models.Model):
@@ -15,8 +16,5 @@ class Guardian(models.Model):
     phone_number = models.CharField(validators=[phone_regex], max_length=17, unique=True)  # validators should be a list
     time_start = models.TimeField()
     time_end = models.TimeField()
-    LANGUAGE_CODES = [
-        (language[0], language[1]) for language in lang.languages
-    ]
-    preferred_language = models.CharField(max_length=2, choices=LANGUAGE_CODES)
-
+    preferred_language = models.CharField(max_length=2, choices=lang.languages)
+    objects = guardian_manager.GuardianManager()
