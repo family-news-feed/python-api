@@ -12,9 +12,9 @@ class Guardian(models.Model):
     # Taken from https://stackoverflow.com/questions/19130942/whats-the-best-way-to-store-phone-number-in-django-models
     phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$',
                                  message="Phone number format must be: '+999999999'. Up to 15 digits allowed.")
-    phone_number = models.CharField(validators=[phone_regex], max_length=17)  # validators should be a list
-    time_start = models.DateTimeField()
-    time_end = models.DateTimeField()
+    phone_number = models.CharField(validators=[phone_regex], max_length=17, unique=True)  # validators should be a list
+    time_start = models.TimeField()
+    time_end = models.TimeField()
     LANGUAGE_CODES = [
         (language[0], language[1]) for language in lang.languages
     ]
