@@ -1,5 +1,4 @@
-# To be used by guardian.py
-from datetime import datetime
+# To be used by guardian_patient_pair.py
 from django.db import models
 from ..models import guardian_patient_pair
 
