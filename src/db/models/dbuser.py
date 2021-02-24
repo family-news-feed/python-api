@@ -3,7 +3,7 @@ from django.contrib.auth.hashers import make_password
 from ..user_types import user_types
 
 
-class User(models.Model):
+class DBUser(models.Model):
     username = models.CharField(primary_key=True, max_length=256)
     access_token = models.CharField(max_length=255)
     refresh_token = models.CharField(max_length=255)

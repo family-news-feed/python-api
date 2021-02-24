@@ -17,7 +17,7 @@ class Guardian(models.Model):
     phone_number = models.CharField(validators=[phone_regex], max_length=17, unique=True)  # validators should be a list
     time_start = models.TimeField(default=datetime.time(hour=8))
     time_end = models.TimeField(default=datetime.time(hour=22))
-    preferred_language = models.CharField(max_length=2, choices=lang.languages)
+    preferred_language = models.CharField(max_length=2, choices=lang.languages, default='en')
     objects = guardian_manager.GuardianManager()
 
     def get_id(self):

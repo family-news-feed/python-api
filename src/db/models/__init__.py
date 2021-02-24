@@ -7,7 +7,7 @@ from .approved_guardian_event import ApprovedGuardianEvent
 from .approved_patient_event import  ApprovedPatientEvent
 from .guardian_notification_instance import GuardianNotificationInstance
 from .guardian_patient_pair import GuardianPatientPair
-from .user import User
+from .dbuser import DBUser
 
 __all__ = [
     'Guardian',
@@ -16,5 +16,5 @@ __all__ = [
     'ApprovedGuardianEvent',
     'GuardianPatientPair',
     'GuardianNotificationInstance',
-    'User'
+    'DBUser'
 ]

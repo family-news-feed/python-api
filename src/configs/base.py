@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'endpoints',
     'db',
+    'rest_framework'
 ]
 
 MIDDLEWARE = [
@@ -67,6 +68,13 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'FamilyNewsFeed.wsgi.application'
 
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated'
+    ]
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/

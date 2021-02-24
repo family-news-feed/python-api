@@ -1,6 +1,7 @@
 from django.db import models
 from django.core.validators import RegexValidator
 from .. import languages_and_countries as lang
+from ..managers import patient_manager
 
 
 class Patient(models.Model):
@@ -10,6 +11,7 @@ class Patient(models.Model):
     # this could be the event type + description we get from FHIR database, else change type
     last_status = models.TextField()
     is_eligible = models.BooleanField(default=True)
+    objects = patient_manager.PatientManager()
 
     def get_mrn(self):
         return self.medical_record_number
