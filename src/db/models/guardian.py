@@ -56,15 +56,15 @@ class Guardian(models.Model):
         self.phone_number = new_phone_number
         self.save(update_fields=['phone_number'])
 
-    def set_time_start(self, new_time_start):
+    def set_time_start(self, new_time_start: datetime.time):
         self.time_start = new_time_start
         self.save(update_fields=['time_start'])
 
-    def set_time_end(self, new_time_end):
+    def set_time_end(self, new_time_end: datetime.time):
         self.time_end = new_time_end
         self.save(update_fields=['time_end'])
 
-    def set_preferred_language(self, new_lang_iso):
+    def set_preferred_language(self, new_lang_iso: str):
         # use iso language codes
         if new_lang_iso in lang.languages:
             self.preferred_language = new_lang_iso

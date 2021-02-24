@@ -7,10 +7,37 @@ class Patient(models.Model):
     medical_record_number = models.BigIntegerField(primary_key=True)
     first_name = models.CharField(max_length=60)
     last_name = models.CharField(max_length=60)
-    # Taken from https://stackoverflow.com/questions/19130942/whats-the-best-way-to-store-phone-number-in-django-models
-    phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$',
-                                 message="Phone number format must be: '+999999999'. Up to 15 digits allowed.")
-    phone_number = models.CharField(validators=[phone_regex], max_length=17)  # validators should be a list
     # this could be the event type + description we get from FHIR database, else change type
     last_status = models.TextField()
     is_eligible = models.BooleanField(default=True)
+
+    def get_mrn(self):
+        return self.medical_record_number
+
+    def get_first_name(self):
+        return self.first_name
+
+    def get_last_name(self):
+        return self.last_name
+
+    def get_last_status(self):
+        return self.last_status
+
+    def is_patient_eligible(self):
+        return self.is_eligible
+
+    def set_first_name(self, new_first_name: str):
+        self.first_name = new_first_name
+        self.save(update_fields=['first_name'])
+
+    def set_last_name(self, new_last_name: str):
+        self.last_name = new_last_name
+        self.save(update_fields=['last_name'])
+
+    def set_last_status(self, last_status_: str):
+        self.last_status = last_status_
+        self.save(update_fields=['last_status'])
+
+    def set_is_eligible(self, is_eligible_: bool):
+        self.is_eligible = is_eligible_
+        self.save(update_fields=['is_eligible'])
