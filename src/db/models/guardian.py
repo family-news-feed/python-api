@@ -20,6 +20,9 @@ class Guardian(models.Model):
     preferred_language = models.CharField(max_length=2, choices=lang.languages, default='en')
     objects = guardian_manager.GuardianManager()
 
+    def __str__(self):
+        return self.first_name + " " + self.last_name + " (" + str(self.guardian_id) + ")"
+
     def get_id(self):
         return self.guardian_id
 

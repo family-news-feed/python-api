@@ -13,6 +13,9 @@ class Patient(models.Model):
     is_eligible = models.BooleanField(default=True)
     objects = patient_manager.PatientManager()
 
+    def __str__(self):
+        return self.first_name + " " + self.last_name + " (" + str(self.medical_record_number) + ")"
+
     def get_mrn(self):
         return self.medical_record_number
 
