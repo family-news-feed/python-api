@@ -15,7 +15,7 @@ def check_env():
     check_key('DJANGO_FHIR_APP_ID')
     check_key('DJANGO_FHIR_API_BASE')
     check_key('DJANGO_FHIR_CLIENT_ID')
-    check_key('DJANGO_FHIR_REDIRECT_URI')
+    check_key('DJANGO_FHIR_REDIRECT_URL')
 
 def main():
     '''Run administrative tasks.'''

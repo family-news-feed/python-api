@@ -17,10 +17,12 @@ from django.contrib import admin
 from django.urls import path
 
 '''
-Import FamilyNewsFeed Views here with the syntax1.5
-from endpoints.<endpoint> import views as <endpoint>Views
+Import FamilyNewsFeed Views here with the syntax:
+
+import endpoints.<endpoint>.views as <endpoint>Views
 '''
-from endpoints.welcome import views as welcomeViews
+import endpoints.welcome.views as welcomeViews
+import endpoints.fhir_auth.views as fhirAuthViews
 
 urlpatterns = [
     # django paths
@@ -29,4 +31,7 @@ urlpatterns = [
     # FamilyNewsFeed Views
     path('welcome/', welcomeViews.welcome),
     path('teapot/', welcomeViews.teapot),
+    path('launch/', fhirAuthViews.oauth_handshake),
+    # path('/', fhirAuthViews.oauth_handshake),
+    path('redirect/', fhirAuthViews.redirect_callback),
 ]

@@ -1,60 +1,44 @@
-from fhirclient import client
 import os
+from fhirclient.client import FHIRClient as client
 
 # FHIR Data Access Scopes
 scopes = [
-    'system/*.read'
-    # 'system/Appointment.read',
-    # 'system/CarePlan.read',
-    # 'system/Encounter.read',
-    # 'system/MedicationAdministration.read',
-    # 'system/MedicationOrder.read',
-    # 'system/Observation.read',
-    # 'system/Patient.read',
-    # 'system/Procedure.read',
+    'offline_access',
+    'system/Appointment.read',
+    'system/CarePlan.read',
+    'system/Encounter.read',
+    'system/MedicationAdministration.read',
+    'system/MedicationOrder.read',
+    'system/Observation.read',
+    'system/Patient.read',
+    'system/Procedure.read',
 ]
 
 # FHIR Auth Handshake Settings
-settings = {
+SETTINGS = {
     'app_id': os.environ.get('DJANGO_FHIR_APP_ID'),
     'api_base': os.environ.get('DJANGO_FHIR_API_BASE'),
     'app_secret': os.environ.get('DJANGO_FHIR_CLIENT_ID'),
-    'redirect_uri': os.environ.get('DJANGO_FHIR_REDIRECT_URI'),
+    # the parameter is called redirect_uri but it is URL scheme not uri (encoded URL)
+    'redirect_uri': os.environ.get('DJANGO_FHIR_REDIRECT_URL'),
     'scope': ' '.join(scopes),
 }
 
-class FHIRClient:
-    ''' Client connection manager for the FHIR database.
+class FHIRClient(client):
+    ''' Cached connection manager for the FHIR database.
     '''
 
-    def __init__(self, launch_token = None, patient_id = None):
-        self._settings = settings.copy()
-        if launch_token is not None:
-            self._settings['launch_token'] = launch_token
-        if patient_id is not None:
-            self._settings['patient_id'] = patient_id
-
-        self._ready = False
-        self._smart = client.FHIRClient(settings=self._settings)
-
-        if self._smart.ready:
-            self._ready = True
+    def __init__(self, **kwargs):
+        save_func = kwargs.get('save_func')
+        state = kwargs.get('state')
+        if state:
+            super().__init__(state=state, save_func=save_func)
         else:
-            self._smart.prepare()
-            self._ready = self._smart.ready
-        self.redirect_url = self._smart.authorize_url
-
-    def readyOrRedirect(self):
-        return self._ready or self._smart.ready or self._smart.authorize_url
-
-    def reauthorize(self):
-        self._ready = self._smart.prepare() or self._smart.reauthorize()
-
-    def smart(self):
-        ready = self.readyOrRedirect()
-        if type(ready) is bool and ready:
-            return self._smart
-        else:
-            self.reauthorize()
-            ready = self.readyOrRedirect()
-            return self._smart if type(ready) is bool and ready else None
+            settings = SETTINGS.copy()
+            launch_token = kwargs.get('launch_token')
+            if launch_token:
+                settings.launch_token = launch_token
+            patient_id = kwargs.get('patient_id')
+            if patient_id:
+                settings.patient_id = patient_id
+            super().__init__(settings=settings, save_func=save_func)
