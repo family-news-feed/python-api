@@ -19,11 +19,10 @@ from django.conf.urls import include, re_path
 from rest_framework.routers import DefaultRouter
 
 """
-Import FamilyNewsFeed Views here with the syntax1.5
+Import FamilyNewsFeed Views here with the syntax
 from endpoints.<endpoint> import views as <endpoint>Views
 """
-from endpoints.welcome import views as welcomeViews
-from endpoints.sms import sms
+
 from endpoints.api.views import GuardianViewSet, PatientViewSet, ApprovedGuardianEventViewSet, \
     ApprovedPatientEventViewSet, GuardianPatientPairViewSet, GuardianNotificationInstanceViewSet, UserViewSet
 
@@ -37,6 +36,14 @@ router.register(r'guardian-patient-pairs', GuardianPatientPairViewSet)
 router.register(r'guardian-notification-instances', GuardianNotificationInstanceViewSet)
 router.register(r'users', UserViewSet)
 
+"""
+Import FamilyNewsFeed Views here with the syntax:
+
+import endpoints.<endpoint>.views as <endpoint>Views
+"""
+import endpoints.welcome.views as welcomeViews
+import endpoints.fhir_auth.views as fhirAuthViews
+from endpoints.sms import sms
 
 urlpatterns = [
     # django paths
@@ -45,7 +52,10 @@ urlpatterns = [
     # FamilyNewsFeed Views
     path(r'welcome/', welcomeViews.welcome),
     path(r'teapot/', welcomeViews.teapot),
-    path('api-auth/', include('rest_framework.urls')),
     re_path(r'^api/', include(router.urls)),
-    path(r'send-update', sms.receive_and_send_update)
+    path(r'send-update/', sms.receive_and_send_update),
+    path('api-auth/', include('rest_framework.urls')),
+    path('launch/', fhirAuthViews.oauth_handshake),
+    # path('/', fhirAuthViews.oauth_handshake),
+    path('redirect/', fhirAuthViews.redirect_callback),
 ]

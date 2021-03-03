@@ -21,8 +21,37 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
+
+# Caching
+# https://docs.djangoproject.com/en/3.1/topics/cache/
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+    }
+}
+
+# Sessions
+# https://docs.djangoproject.com/en/3.1/ref/settings/#sessions
+
+SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
+
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
+# CSRF_COOKIE_AGE = 172800 # 2 days in seconds
+
+# CSRF_COOKIE_DOMAIN = '.familynewsfeed.com'
+
+# CSRF_USE_SESSIONS = True
+
+# SESSION_COOKIE_SECURE = True
+
+# SESSION_COOKIE_NAME = 'ashtooghmkchsdaworbbp'
+
+# SESSION_COOKIE_PATH = '/'
+
+# SESSION_COOKIE_AGE = 86400 # 1 day in seconds
 
 # Application definition
 
@@ -95,3 +124,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+APPEND_SLASH = True
+
+DEFAULT_CHARSET = "UTF-8"
