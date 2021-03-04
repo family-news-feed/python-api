@@ -5,7 +5,7 @@ from django.core.validators import RegexValidator
 
 class GuardianNotificationInstance(models.Model):
     notification_id = models.BigAutoField(primary_key=True)
-    guardian_patient_pair_id = models.ForeignKey('GuardianPatientPair', on_delete=models.CASCADE)
+    guardian_patient_pair = models.ForeignKey('GuardianPatientPair', on_delete=models.CASCADE)
     time_sent = models.DateTimeField()
     message = models.TextField()
     event_type = models.CharField(max_length=15, choices=event_types)
