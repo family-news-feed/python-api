@@ -37,7 +37,7 @@ CACHES = {
 
 SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
 
-SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+# SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 # CSRF_COOKIE_AGE = 172800 # 2 days in seconds
 
@@ -127,4 +127,37 @@ STATIC_URL = '/static/'
 
 APPEND_SLASH = True
 
-DEFAULT_CHARSET = "UTF-8"
+DEFAULT_CHARSET = 'UTF-8'
+
+
+# Family News Feed Custom Environment Variables
+
+DJANGO_SESSION_KEY = os.environ.get('DJANGO_SESSION_KEY')
+
+FHIR_SETTINGS = {
+    # Application DSTU2 Endpoint to query /metadata
+    'api_base': os.environ.get('DJANGO_FHIR_API_BASE'),
+
+    # Application Client ID
+    'app_id': os.environ.get('DJANGO_FHIR_APP_ID'),
+
+    # Application Client Secret
+    'app_secret': os.environ.get('DJANGO_FHIR_CLIENT_ID'),
+
+    # the parameter is called redirect_uri but it is URL scheme
+    # not an encoded URL (uri)
+    'redirect_uri': os.environ.get('DJANGO_FHIR_REDIRECT_URL'),
+
+    # Access Scopes
+    'scope': ' '.join([
+        'offline_access',
+        'system/Appointment.read',
+        'system/CarePlan.read',
+        'system/Encounter.read',
+        'system/MedicationAdministration.read',
+        'system/MedicationOrder.read',
+        'system/Observation.read',
+        'system/Patient.read',
+        'system/Procedure.read',
+    ]),
+}

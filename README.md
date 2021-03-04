@@ -12,7 +12,7 @@
 -   Add to [System Hosts](file:///C:/Windows/System32/drivers/etc/hosts "Click to go to Windows Host File"):
     -   ```
         127.0.0.1           localhost
-        127.0.0.1           familynewsfeed.com
+        127.0.0.1           local.familynewsfeed.com
         ```
 -   Install [PostgreSQL 13](https://www.enterprisedb.com/downloads/postgres-postgresql-downloads "Download PostgreSQL 13"):
     -   store password for `postgres` user in password manager
