@@ -1,4 +1,4 @@
-from django.http import HttpResponse, HttpResponseRedirect, JsonResponse, QueryDict, HttpResponseNotAllowed, HttpResponseServerError
+from django.http import HttpResponseRedirect, JsonResponse, HttpResponseNotAllowed, HttpResponseServerError
 from django.conf import settings
 from fhir.client import FHIR
 from utils.request import get_query_parameters
