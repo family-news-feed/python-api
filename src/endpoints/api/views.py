@@ -1,7 +1,11 @@
 from rest_framework.mixins import (
     CreateModelMixin, ListModelMixin, RetrieveModelMixin, UpdateModelMixin
 )
-from rest_framework.viewsets import ModelViewSet
+from rest_framework.viewsets import ModelViewSet, GenericViewSet
+from rest_framework.generics import CreateAPIView
+from django.contrib.auth.models import User
+from rest_framework import permissions
+
 
 from db.models import *
 from db.serializers import *
@@ -35,3 +39,9 @@ class GuardianNotificationInstanceViewSet(ModelViewSet):
 class GuardianPatientPairViewSet(ModelViewSet):
     serializer_class = GuardianPatientPairSerializer
     queryset = GuardianPatientPair.objects.all()
+
+
+class UserViewSet(ModelViewSet):
+    serializer_class = UserSerializer
+    queryset = User.objects.all()
+    permission_classes = [permissions.IsAdminUser]

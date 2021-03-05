@@ -5,6 +5,7 @@ from .guardian_patient_pair_serializer import GuardianPatientPairSerializer
 from .guardian_serializer import GuardianSerializer
 from .patient_serializer import PatientSerializer
 from .guardian_notification_instance_serializer import GuardianNotificationInstanceSerializer
+from .user_serializer import UserSerializer
 
 
 __all__ = [
@@ -13,5 +14,6 @@ __all__ = [
     'GuardianPatientPairSerializer',
     'GuardianSerializer',
     'PatientSerializer',
-    'GuardianNotificationInstanceSerializer'
+    'GuardianNotificationInstanceSerializer',
+    'UserSerializer'
 ]
