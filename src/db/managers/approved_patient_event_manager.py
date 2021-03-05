@@ -7,7 +7,7 @@ class ApprovedPatientEventManager(models.Manager):
 
     def get_patient_approved_events(self, patient_mrn_: str):
         # Query the database for the events related to a patient
-        events_with_patients = self.filter(patient_id=patient_mrn_)
+        events_with_patients = self.filter(patient=patient_mrn_)
 
         approved_events = []
         for entry in events_with_patients:
@@ -16,5 +16,5 @@ class ApprovedPatientEventManager(models.Manager):
 
     def remove_patient_approved_event(self, patient_mrn_: str, event_type_: str):
         # Query the database for the event and patient and delete the row
-        row = self.filter(patient_id=patient_mrn_, event_type=event_type_)
+        row = self.filter(patient=patient_mrn_, event_type=event_type_)
         row.delete()
