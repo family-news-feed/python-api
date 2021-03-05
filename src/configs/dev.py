@@ -1,4 +1,4 @@
-"""
+'''
 Django settings for FamilyNewsFeed project.
 Dev environment settings only.
 
@@ -9,9 +9,9 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
-"""
+'''
 
-from .base import *
+from .base import * # pylint: disable=unused-wildcard-import
 
 
 # Quick-start development settings - unsuitable for production
@@ -20,7 +20,7 @@ from .base import *
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['.localhost', '127.0.0.1', '[::1]']
+ALLOWED_HOSTS = ['familynewsfeed.com', '.localhost', '127.0.0.1', '[::1]']
 
 
 # Database
