@@ -1,9 +1,0 @@
-{
-    "django.i18n": true,
-    "powershell.startAutomatically": true,
-    "python.linting.enabled": true,
-    "python.linting.lintOnSave": true,
-    "python.linting.pylintEnabled": true,
-    "vsintellicode.features.python.deepLearning": "enabled",
-    "vsintellicode.python.completionsEnabled": true,
-}

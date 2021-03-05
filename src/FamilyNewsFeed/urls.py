@@ -1,4 +1,4 @@
-'''FamilyNewsFeed URL Configuration
+"""FamilyNewsFeed URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.1/topics/http/urls/
@@ -12,19 +12,17 @@ Class-based views
 Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-'''
+"""
 from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include, re_path
 from rest_framework.routers import DefaultRouter
 
-
 """
 Import FamilyNewsFeed Views here with the syntax1.5
 from endpoints.<endpoint> import views as <endpoint>Views
 """
-import endpoints.welcome.views as welcomeViews
-import endpoints.fhir_auth.views as fhirAuthViews
+from endpoints.welcome import views as welcomeViews
 from endpoints.api.views import GuardianViewSet, PatientViewSet, ApprovedGuardianEventViewSet, \
     ApprovedPatientEventViewSet, GuardianPatientPairViewSet, GuardianNotificationInstanceViewSet, UserViewSet
 
@@ -44,12 +42,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     # FamilyNewsFeed Views
-
     path(r'welcome/', welcomeViews.welcome),
     path(r'teapot/', welcomeViews.teapot),
     path('api-auth/', include('rest_framework.urls')),
     re_path(r'^api/', include(router.urls)),
-    path('launch/', fhirAuthViews.oauth_handshake),
-    # path('/', fhirAuthViews.oauth_handshake),
-    path('redirect/', fhirAuthViews.redirect_callback),
 ]
