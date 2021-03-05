@@ -7,13 +7,6 @@ from .message_builder import MessageBuilder
 sms_vendor = Televox()
 MB = MessageBuilder()
 
-# def send_sms(request):
-#     message = request.data['message']
-#     phone = request.data['phone_number']
-#     payload = sms_vendor.build_msg_request(message, phone)
-#     s = sms_vendor.send_msg(payload)
-#     return response.Response(s)
-
 
 @decorators.api_view(['POST'])
 @decorators.authentication_classes([authentication.BasicAuthentication])
