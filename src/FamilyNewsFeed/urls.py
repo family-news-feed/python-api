@@ -24,7 +24,7 @@ from endpoints.<endpoint> import views as <endpoint>Views
 """
 from endpoints.welcome import views as welcomeViews
 from endpoints.api.views import GuardianViewSet, PatientViewSet, ApprovedGuardianEventViewSet, \
-    ApprovedPatientEventViewSet, GuardianPatientPairViewSet, GuardianNotificationInstanceViewSet
+    ApprovedPatientEventViewSet, GuardianPatientPairViewSet, GuardianNotificationInstanceViewSet, UserViewSet
 
 
 router = DefaultRouter()
@@ -34,6 +34,7 @@ router.register(r'approved-guardian-events', ApprovedGuardianEventViewSet)
 router.register(r'approved-patient-events', ApprovedPatientEventViewSet)
 router.register(r'guardian-patient-pairs', GuardianPatientPairViewSet)
 router.register(r'guardian-notification-instances', GuardianNotificationInstanceViewSet)
+router.register(r'users', UserViewSet)
 
 
 urlpatterns = [
