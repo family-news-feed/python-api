@@ -47,5 +47,5 @@ urlpatterns = [
     path(r'teapot/', welcomeViews.teapot),
     path('api-auth/', include('rest_framework.urls')),
     re_path(r'^api/', include(router.urls)),
-    path(r'send-update', sms.send_sms)
+    path(r'send-update', sms.receive_and_send_update)
 ]
