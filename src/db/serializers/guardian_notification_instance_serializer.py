@@ -7,7 +7,7 @@ class GuardianNotificationInstanceSerializer(ModelSerializer):
         model = GuardianNotificationInstance
         fields = (
             'notification_id',
-            'guardian_patient_pair_id',
+            'guardian_patient_pair',
             'time_sent',
             'message',
             'event_type',

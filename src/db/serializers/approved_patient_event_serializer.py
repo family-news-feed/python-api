@@ -7,6 +7,6 @@ class ApprovedPatientEventSerializer(ModelSerializer):
         model = ApprovedPatientEvent
         fields = (
             'id',
-            'patient_mrn',
+            'patient',
             'event_type',
         )
