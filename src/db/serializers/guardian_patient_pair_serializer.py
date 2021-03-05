@@ -7,7 +7,7 @@ class GuardianPatientPairSerializer(ModelSerializer):
         model = GuardianPatientPair
         fields = (
             'pair_id',
-            'guardian_id',
-            'patient_mrn',
+            'guardian',
+            'patient',
             'date_created',
         )
