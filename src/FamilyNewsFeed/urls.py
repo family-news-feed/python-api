@@ -15,22 +15,40 @@ Including another URLconf
 '''
 from django.contrib import admin
 from django.urls import path
+from django.conf.urls import include, re_path
+from rest_framework.routers import DefaultRouter
 
-'''
-Import FamilyNewsFeed Views here with the syntax:
 
-import endpoints.<endpoint>.views as <endpoint>Views
-'''
+"""
+Import FamilyNewsFeed Views here with the syntax1.5
+from endpoints.<endpoint> import views as <endpoint>Views
+"""
 import endpoints.welcome.views as welcomeViews
 import endpoints.fhir_auth.views as fhirAuthViews
+from endpoints.api.views import GuardianViewSet, PatientViewSet, ApprovedGuardianEventViewSet, \
+    ApprovedPatientEventViewSet, GuardianPatientPairViewSet, GuardianNotificationInstanceViewSet, UserViewSet
+
+
+router = DefaultRouter()
+router.register(r'guardians', GuardianViewSet)
+router.register(r'patients', PatientViewSet)
+router.register(r'approved-guardian-events', ApprovedGuardianEventViewSet)
+router.register(r'approved-patient-events', ApprovedPatientEventViewSet)
+router.register(r'guardian-patient-pairs', GuardianPatientPairViewSet)
+router.register(r'guardian-notification-instances', GuardianNotificationInstanceViewSet)
+router.register(r'users', UserViewSet)
+
 
 urlpatterns = [
     # django paths
     path('admin/', admin.site.urls),
 
     # FamilyNewsFeed Views
-    path('welcome/', welcomeViews.welcome),
-    path('teapot/', welcomeViews.teapot),
+
+    path(r'welcome/', welcomeViews.welcome),
+    path(r'teapot/', welcomeViews.teapot),
+    path('api-auth/', include('rest_framework.urls')),
+    re_path(r'^api/', include(router.urls)),
     path('launch/', fhirAuthViews.oauth_handshake),
     # path('/', fhirAuthViews.oauth_handshake),
     path('redirect/', fhirAuthViews.redirect_callback),
