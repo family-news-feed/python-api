@@ -14,7 +14,7 @@ class GuardianPatientPairManager(models.Manager):
             patient_mrns.append(pair.patient_id)
         return patient_mrns
 
-    def get_guardian_ids_from_patients(self, patient_mrn_: str):
+    def get_guardian_ids_from_patients(self, patient_mrn_: int):
         # Query the database for the guardians related to a patient
         pairs_with_patient = self.filter(patient=patient_mrn_)
 

@@ -23,6 +23,7 @@ Import FamilyNewsFeed Views here with the syntax1.5
 from endpoints.<endpoint> import views as <endpoint>Views
 """
 from endpoints.welcome import views as welcomeViews
+from endpoints.sms import sms
 from endpoints.api.views import GuardianViewSet, PatientViewSet, ApprovedGuardianEventViewSet, \
     ApprovedPatientEventViewSet, GuardianPatientPairViewSet, GuardianNotificationInstanceViewSet, UserViewSet
 
@@ -46,4 +47,5 @@ urlpatterns = [
     path(r'teapot/', welcomeViews.teapot),
     path('api-auth/', include('rest_framework.urls')),
     re_path(r'^api/', include(router.urls)),
+    path(r'send-update', sms.receive_and_send_update)
 ]
