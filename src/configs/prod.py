@@ -11,7 +11,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
-from .base import *
+from .base import * # pylint: disable=unused-wildcard-import
 
 
 # Quick-start development settings - unsuitable for production
@@ -37,6 +37,12 @@ DATABASES = {
     }
 }
 
+REST_FRAMEWORK = {
+    # deactivate browsable api in prod
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+    )
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
