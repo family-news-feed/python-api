@@ -30,5 +30,5 @@ class GuardianPatientPairManager(models.Manager):
 
     def get_pair_creation_time(self, guardian_id_: str, patient_mrn_: str):
         # Query the database using guardian id and patient mrn and return a time
-        pair = self.get(guardian_id=guardian_id_, patient_id=patient_mrn_)
+        pair = self.get(guardian=guardian_id_, patient=patient_mrn_)
         return pair.date_created
